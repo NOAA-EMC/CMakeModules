@@ -1,6 +1,11 @@
 # This module looks for environment variables detailing where NEMSIO lib is
 # If variables are not set, NEMSIO will be built from external source 
 include(ExternalProject)
+if(DEFINED ENV{NEMSIO_LIB} )
+  message("HEY!! setting NEMSIO library via environment variable")
+  set(NEMSIO_LIBRARY $ENV{NEMSIO_LIB} CACHE STRING "IP Library Location" )
+  set(NEMSIOINC $ENV{NEMSIO_INC} CACHE STRING "NEMSIO_4 Include Location" )
+else()
   set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
   ExternalProject_Add(NCEPLIBS-nemsio 
     PREFIX ${PROJECT_BINARY_DIR}/NCEPLIBS-nemsio
@@ -29,6 +34,7 @@ include(ExternalProject)
       set( CORE_BUILT ${NEMSIO_LIBRARY} )
       set( EXT_BUILT NCEPLIBS-nemsio)
   endif()
+endif()
 
 set( NEMSIO_LIBRARY_PATH ${NEMSIO_LIBRARY} CACHE STRING "NEMSIO Library Location" )
 set( NEMSIO_INCLUDE_PATH ${NEMSIOINC} CACHE STRING "NEMSIO Include Location" )
