@@ -1,6 +1,12 @@
 # This module looks for environment variables detailing where SIGIO lib is
 # If variables are not set, SIGIO will be built from external source 
 include(ExternalProject)
+if(DEFINED ENV{SIGIO_LIB} )
+  message("HEY!! setting SIGIO library via environment variable")
+  set(SIGIO_LIBRARY $ENV{SIGIO_LIB} CACHE STRING "SIGIO Library Location" )
+  set(SIGIO_INC $ENV{SIGIO_INC} CACHE STRING "SIGIO Include Location" )
+  set(SIGIO_4_INC $ENV{SIGIO_INC4} CACHE STRING "SIGIO Include Location" )
+else()
   set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
   ExternalProject_Add(NCEPLIBS-sigio 
     PREFIX ${PROJECT_BINARY_DIR}/NCEPLIBS-sigio
@@ -28,6 +34,7 @@ include(ExternalProject)
       set( CORE_BUILT ${SIGIO_LIBRARY} )
       set( EXT_BUILT NCEPLIBS-sigio )
   endif()
+endif()
 
 set( SIGIO_LIBRARY_PATH ${SIGIO_LIBRARY} CACHE STRING "SIGIO Library Location" )
 set( SIGIO_INCLUDE_PATH ${SIGIO_LIBRARY} CACHE STRING "SIGIO include Location" )
