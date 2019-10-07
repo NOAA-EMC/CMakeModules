@@ -7,6 +7,23 @@ if(DEFINED ENV{W3NCO_LIB4} )
   set( W3NCO_LIBd_PATH ${W3NCO_LIBd} CACHE STRING "W3NCO Library Location" )
   set( W3NCO_LIB4_PATH ${W3NCO_LIB4} CACHE STRING "W3NCO_4 Library Location" )
   set( W3NCO_LIB8_PATH ${W3NCO_LIB8} CACHE STRING "W3NCO_4 Library Location" )
+else()
+  set(W3NCO_VER 2.0.6)
+  find_library( W3NCO_LIBd 
+    NAMES libw3nco_v${W3NCO_VER}_d.a libw3nco_v2.0.6_d.a
+    HINTS 
+      ${CMAKE_INSTALL_PREFIX}/lib
+    )
+  find_library( W3NCO_LIB4 
+    NAMES libw3nco_v${W3NCO_VER}_4.a libw3nco_v2.0.6_4.a
+    HINTS 
+      ${CMAKE_INSTALL_PREFIX}/lib
+    )
+  find_library( W3NCO_LIB8 
+    NAMES libw3nco_v${W3NCO_VER}_8.a libw3nco_v2.0.6_8.a
+    HINTS 
+      ${CMAKE_INSTALL_PREFIX}/lib
+    )
 endif()
 
 

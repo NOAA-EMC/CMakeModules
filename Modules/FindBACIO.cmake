@@ -6,4 +6,23 @@ if(DEFINED ENV{BACIO} )
   set(BACIO_LIB8 $ENV{BACIO_LIBd} CACHE STRING "BACIO_8 Library Location")
   set(BACIO_LIBd $ENV{BACIO_LIBd} CACHE STRING "BACIO_8 Library Location")
   set( BACIO_LIB4_PATH ${BACIO_LIB4} CACHE STRING "BACIO Library Location" )
+else()
+  set(BACIO_VER 2.1.0)
+  find_library( BACIO_LIBd 
+    NAMES libbacio_v${BACIO_VER}_d.a 
+    HINTS 
+      ${CMAKE_INSTALL_PREFIX}/lib
+    )
+  find_library( BACIO_LIB4 
+    NAMES libbacio_v${BACIO_VER}_4.a 
+    HINTS 
+      ${CMAKE_INSTALL_PREFIX}/lib
+    )
+  find_library( BACIO_LIB8 
+    NAMES libbacio_v${BACIO_VER}_8.a 
+    HINTS 
+      ${CMAKE_INSTALL_PREFIX}/lib
+    )
 endif()
+
+
