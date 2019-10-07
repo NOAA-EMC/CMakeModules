@@ -8,5 +8,16 @@ if(DEFINED ENV{SIGIO_LIB} )
 
   set( SIGIO_LIB_PATH ${SIGIO_LIB} CACHE STRING "SIGIO Library Location" )
   set( SIGIO_INCLUDE_PATH ${SIGIO_LIB} CACHE STRING "SIGIO include Location" )
-
+else()
+  set(SIGIO_VER 2.2.3)
+  find_library( SIGIO_LIB 
+    NAMES libsigio_v${SIGIO_VER}.a 
+    HINTS 
+      ${CMAKE_INSTALL_PREFIX}/lib
+    )
+  set(SIGIO_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "SIGIO Include Location" )
+  set(SIGIO_INC4 ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "SIGIO Include Location" )
 endif()
+
+
+
