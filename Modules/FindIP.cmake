@@ -3,12 +3,12 @@
 
 if(DEFINED ENV{IP_LIBd} )
   message("HEY!! setting IP library via environment variable")
-  set(IP_LIBd $ENV{IP_LIBd} CACHE STRING "IP Library Location" )
+  set(IP_LIBd $ENV{IP_LIBd} CACHE STRING "IP_d Library Location" )
   set(IP_LIB4 $ENV{IP_LIB4} CACHE STRING "IP_4 Library Location" )
   set(IP_LIB8 $ENV{IP_LIB8} CACHE STRING "IP_8 Library Location" )
   set(IP_INC4 $ENV{IP_INC4} CACHE STRING "IP_4 Include Location" )
   set(IP_INC8 $ENV{IP_INC8} CACHE STRING "IP_8 Include Location" )
-  set(IP_INCd $ENV{IP_INCd} CACHE STRING "IP_8 Include Location" )
+  set(IP_INCd $ENV{IP_INCd} CACHE STRING "IP_d Include Location" )
 
   set( IP_LIBd_PATH ${IP_LIBd} CACHE STRING "IP Library Location" )
   set( IP_LIB4_PATH ${IP_LIB4} CACHE STRING "IP_4 Library Location" )
@@ -25,12 +25,12 @@ else()
       ${CMAKE_INSTALL_PREFIX}/lib
     )
   find_library( IP_LIB8 
-    NAMES libip_v${IP_VER}_8.a libip_v2.0.6_8.a
+    NAMES libip_v${IP_VER}_8.a 
     HINTS 
       ${CMAKE_INSTALL_PREFIX}/lib
     )
   set(IP_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "IP_4 Include Location" )
-  set(IP_INC8 ${CMAKE_INSTALL_PREFIX}/include_8 CACHE STRING "IP_8 Include Location" )
+# set(IP_INC8 ${CMAKE_INSTALL_PREFIX}/include_8 CACHE STRING "IP_8 Include Location" )
   set(IP_INCd ${CMAKE_INSTALL_PREFIX}/include_d CACHE STRING "IP_d Include Location" )
 endif()
 
