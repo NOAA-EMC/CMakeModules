@@ -9,5 +9,6 @@ else()
     HINTS
         /nwprod/util/exec
         $ENV{NWPROD}/util/exec
+        ${CMAKE_INSTALL_PREFIX}/bin
     ${NO_DEFAULT_PATH})
 endif()
