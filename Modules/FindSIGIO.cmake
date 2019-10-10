@@ -9,7 +9,7 @@ if(DEFINED ENV{SIGIO_LIB} )
   set( SIGIO_LIB_PATH ${SIGIO_LIB} CACHE STRING "SIGIO Library Location" )
   set( SIGIO_INCLUDE_PATH ${SIGIO_LIB} CACHE STRING "SIGIO include Location" )
 else()
-  set(SIGIO_VER 2.2.3)
+  set(SIGIO_VER 2.1.0)
   find_library( SIGIO_LIB 
     NAMES libsigio_v${SIGIO_VER}.a 
     HINTS 
