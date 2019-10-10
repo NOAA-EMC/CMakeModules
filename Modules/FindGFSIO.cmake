@@ -4,12 +4,13 @@ if(DEFINED ENV{GFSIO_LIB4} )
   message("HEY!! setting GFSIO library via environment variable")
   set(GFSIO_LIB4 $ENV{GFSIO_LIB4} CACHE STRING "GFSIO Library Location" )
   set(GFSIO_INC $ENV{GFSIO_INC} CACHE STRING "GFSIO_4 Include Location" )
+  set(GFSIO_INC4 $ENV{GFSIO_INC} CACHE STRING "GFSIO_4 Include Location" )
   set( GFSIO_LIB_PATH ${GFSIO_LIB4} CACHE STRING "GFSIO Library Location" )
   set( GFSIO_INCLUDE_PATH ${GFSIO_INC4} CACHE STRING "GFSIO Include Location" )
 else()
   set(GFSIO_VER 1.1.0)
-  find_library( GFSIO_LIB 
-    NAMES libgfsio_v${GFSIO_VER}.a 
+  find_library( GFSIO_LIB4
+    NAMES libgfsio_v${GFSIO_VER}_4.a 
     HINTS 
       ${CMAKE_INSTALL_PREFIX}/lib
     )
