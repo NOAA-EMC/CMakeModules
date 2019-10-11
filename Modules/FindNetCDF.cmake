@@ -29,7 +29,7 @@
 if(DEFINED ENV{NETCDF})
   set(NETCDF_DIR $ENV{NETCDF})
 endif()
-
+message("HEY netcdf_dir is ${NETCDF_DIR}")
 if (NETCDF_INCLUDES AND NETCDF_LIBRARIES)
   # Already in cache, be silent
   set (NETCDF_FIND_QUIETLY TRUE)
