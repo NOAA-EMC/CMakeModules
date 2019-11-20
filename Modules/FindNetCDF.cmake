@@ -88,10 +88,8 @@ find_library (NETCDF_LIBRARIES_C
 mark_as_advanced(NETCDF_LIBRARIES_C)
 
 if("${NETCDF_DIR}" STREQUAL "")
-  message(FATAL_ERROR "
-         Cannot find NETCDF!!!!
-
-         ")
+  message(" Cannot find NETCDF!!!!")
+  return()
 endif()
 find_file (NETCDF_NCDUMP
     NAMES ncdump
