@@ -12,7 +12,7 @@ else()
     HINTS 
       ${CMAKE_INSTALL_PREFIX}/lib
     )
-  set(CRTM_INC {CMAKE_INSTALL_PREFIX}/include CACHE STRING "CRTM Include Location")
+  set(CRTM_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "CRTM Include Location")
 endif()
 
 
