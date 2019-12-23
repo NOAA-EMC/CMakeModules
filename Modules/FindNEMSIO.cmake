@@ -13,7 +13,9 @@ else()
     HINTS 
       ${CMAKE_INSTALL_PREFIX}/lib
     )
-  set(NEMSIO_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "NEMSIO Include Location" )
+  set(NEMSIO_INC ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "NEMSIO Include Location" )
+  message("HEY!! NEMSIO_INC is ${NEMSIO_INC})
+  message("HEY!! NEMSIO_LIB is ${NEMSIO_LIB})
 endif()
 
 
