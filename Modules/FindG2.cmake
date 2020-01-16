@@ -5,20 +5,24 @@ if(DEFINED ENV{G2_LIBd})
   set(G2_LIB4 $ENV{G2_LIB4} CACHE STRING "G2_4 Library Location" )
   set(G2_INC4 $ENV{G2_INC4} CACHE STRING "G2_4 Include Location" )
   set(G2_INCd $ENV{G2_INCd} CACHE STRING "G2_d Include Location" )
-else()
-  set(G2_VER 3.1.0)
-  find_library( G2_LIBd
-    NAMES libg2_v${G2_VER}_d.a
-    HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
-  find_library( G2_LIB4
-    NAMES libg2_v${G2_VER}_4.a
-    HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
-  set(G2_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "G2_4 Include Location" )
-  set(G2_INCd ${CMAKE_INSTALL_PREFIX}/include_d CACHE STRING "G2_d Include Location" )
+
+  set(name "g2")
+  string(TOUPPER ${name} uppercase_name)
+
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB4})
+  set(version ${CMAKE_MATCH_1})
+
+  set(kinds "4" "d")
+  foreach(kind ${kinds})
+    set(lib_name ${name}_${kind})
+    set(versioned_lib_name ${name}_${version}_${kind})
+
+    get_filename_component(lib_dir ${${uppercase_name}_LIB${kind}} DIRECTORY)
+    find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+    
+    add_library(${lib_name} STATIC IMPORTED)
+    set_target_properties(${lib_name} PROPERTIES
+      IMPORTED_LOCATION ${lib_path}
+      INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC${kind}})
+  endforeach()
 endif()
-
-

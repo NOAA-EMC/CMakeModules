@@ -3,12 +3,20 @@
 if(DEFINED ENV{NEMSIO_LIB} )
   set(NEMSIO_LIB $ENV{NEMSIO_LIB} CACHE STRING "NEMSIO Library Location" )
   set(NEMSIO_INC $ENV{NEMSIO_INC} CACHE STRING "NEMSIO Include Location" )
-else()
-  set(NEMSIO_VER 2.2.3)
-  find_library( NEMSIO_LIB
-    NAMES libnemsio_v${NEMSIO_VER}.a
-    HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
-  set(NEMSIO_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "NEMSIO Include Location" )
+
+  set(name "nemsio")
+  string(TOUPPER ${name} uppercase_name)
+
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB})
+  set(version ${CMAKE_MATCH_1})
+
+  set(versioned_lib_name ${name}_${version})
+
+  get_filename_component(lib_dir ${${uppercase_name}_LIB$} DIRECTORY)
+  find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+  
+  add_library(${name} STATIC IMPORTED)
+  set_target_properties(${name} PROPERTIES
+    IMPORTED_LOCATION ${lib_path}
+    INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
 endif()

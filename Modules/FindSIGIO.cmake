@@ -3,12 +3,20 @@
 if(DEFINED ENV{SIGIO_LIB4} )
   set(SIGIO_LIB4 $ENV{SIGIO_LIB4} CACHE STRING "SIGIO_4 Library Location" )
   set(SIGIO_INC4 $ENV{SIGIO_INC4} CACHE STRING "SIGIO_4 Include Location" )
-else()
-  set(SIGIO_VER 2.1.0)
-  find_library( SIGIO_LIB4
-    NAMES libsigio_v${SIGIO_VER}_4.a
-    HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
-  set(SIGIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "SIGIO Include Location" )
+
+  set(name "sigio")
+  string(TOUPPER ${name} uppercase_name)
+
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB4})
+  set(version ${CMAKE_MATCH_1})
+
+  set(versioned_lib_name ${name}_${version})
+
+  get_filename_component(lib_dir ${${uppercase_name}_LIB4$} DIRECTORY)
+  find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+  
+  add_library(${name} STATIC IMPORTED)
+  set_target_properties(${name} PROPERTIES
+    IMPORTED_LOCATION ${lib_path}
+    INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC4})
 endif()
