@@ -10,5 +10,6 @@ else()
         /nwprod/util/exec
         $ENV{NWPROD}/util/exec
         ${CMAKE_INSTALL_PREFIX}/bin
+        ${NCEPLIBS_INSTALL_DIR}/lib
     ${NO_DEFAULT_PATH})
 endif()

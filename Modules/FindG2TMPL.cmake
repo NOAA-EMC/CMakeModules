@@ -9,6 +9,7 @@ else()
     NAMES libg2tmpl_v${G2TMPL_VER}_d.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(G2TMPL_INCd ${CMAKE_INSTALL_PREFIX}/include_d CACHE STRING "G2TMPL_d Include Location" )
 endif()

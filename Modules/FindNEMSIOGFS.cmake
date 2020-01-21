@@ -9,6 +9,7 @@ else()
     NAMES libnemsio_v${NEMSIOGFS_VER}.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(NEMSIOGFS_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "NEMSIOGFS Include Location" )
 endif()

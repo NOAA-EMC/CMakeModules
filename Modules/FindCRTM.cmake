@@ -10,6 +10,7 @@ else()
     NAMES libcrtm_v${CRTM_VER}.a 
     HINTS 
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(CRTM_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "CRTM Include Location")
 endif()

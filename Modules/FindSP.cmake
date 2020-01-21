@@ -11,15 +11,18 @@ else()
     NAMES libsp_v${SP_VER}_d.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( SP_LIB4
     NAMES libsp_v${SP_VER}_4.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( SP_LIB8
     NAMES libsp_v${SP_VER}_8.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
 endif()

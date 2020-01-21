@@ -9,6 +9,7 @@ else()
     NAMES libnemsio_v${NEMSIO_VER}.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(NEMSIO_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "NEMSIO Include Location" )
 endif()

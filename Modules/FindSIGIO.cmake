@@ -9,6 +9,7 @@ else()
     NAMES libsigio_v${SIGIO_VER}_4.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(SIGIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "SIGIO Include Location" )
 endif()

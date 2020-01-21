@@ -9,6 +9,7 @@ else()
     NAMES libsfcio_v${SFCIO_VER}_4.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(SFCIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "SFCIO_4 Include Location" )
 endif()

@@ -14,16 +14,19 @@ else()
     NAMES libip_v${IP_VER}_d.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( IP_LIB4
     NAMES libip_v${IP_VER}_4.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( IP_LIB8
     NAMES libip_v${IP_VER}_8.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(IP_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "IP_4 Include Location" )
   set(IP_INC8 ${CMAKE_INSTALL_PREFIX}/include_8 CACHE STRING "IP_8 Include Location" )

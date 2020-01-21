@@ -11,11 +11,13 @@ else()
     NAMES libg2_v${G2_VER}_d.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( G2_LIB4
     NAMES libg2_v${G2_VER}_4.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(G2_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "G2_4 Include Location" )
   set(G2_INCd ${CMAKE_INSTALL_PREFIX}/include_d CACHE STRING "G2_d Include Location" )

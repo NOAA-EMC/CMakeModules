@@ -9,6 +9,7 @@ else()
     NAMES libgfsio_v${GFSIO_VER}_4.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   set(GFSIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "GFSIO Include Location" )
 endif()

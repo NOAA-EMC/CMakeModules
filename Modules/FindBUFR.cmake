@@ -11,15 +11,18 @@ else()
     NAMES libbufr_v${BUFR_VER}_d.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( BUFR_LIB4
     NAMES libbufr_v${BUFR_VER}_4.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( BUFR_LIB8
     NAMES libbufr_v${BUFR_VER}_8.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
 endif()

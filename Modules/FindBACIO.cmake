@@ -11,15 +11,18 @@ else()
     NAMES libbacio_v${BACIO_VER}_d.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( BACIO_LIB4
     NAMES libbacio_v${BACIO_VER}_4.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( BACIO_LIB8
     NAMES libbacio_v${BACIO_VER}_8.a
     HINTS
       ${CMAKE_INSTALL_PREFIX}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
 endif()
