@@ -12,5 +12,9 @@ else()
       ${NCEPLIBS_INSTALL_DIR}/lib
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(CRTM_INC ${NCEPLIBS_INSTALL_DIR}/include CACHE STRING "CRTM Include Location")
+  if(${NCEPLIBS_INSTALL_DIR})
+    set(CRTM_INC ${NCEPLIBS_INSTALL_DIR}/include CACHE STRING "CRTM Include Location")
+  else()
+    set(CRTM_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "CRTM Include Location")
+  endif()
 endif()

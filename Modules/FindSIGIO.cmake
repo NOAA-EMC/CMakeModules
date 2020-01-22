@@ -10,5 +10,9 @@ else()
     HINTS
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(SIGIO_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "SIGIO Include Location" )
+  if(${NCEPLIBS_INSTALL_DIR})
+    set(SIGIO_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "SIGIO Include Location" )
+  else()
+    set(SIGIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "SIGIO Include Location" )
+  endif()
 endif()
