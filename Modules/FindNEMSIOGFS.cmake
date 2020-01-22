@@ -8,8 +8,7 @@ else()
   find_library( NEMSIOGFS_LIB
     NAMES libnemsio_v${NEMSIOGFS_VER}.a
     HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-      ${NCEPLIBS_INSTALL_DIR}/lib
+      ${NECPLIBS_INSTALL_DIR}/lib
     )
-  set(NEMSIOGFS_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "NEMSIOGFS Include Location" )
+  set(NEMSIOGFS_INC ${NECPLIBS_INSTALL_DIR}/include CACHE STRING "NEMSIOGFS Include Location" )
 endif()

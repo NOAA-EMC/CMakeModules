@@ -10,8 +10,7 @@ else()
   find_library( POST_LIB
     NAMES libip_v${POST_VER}.a
     HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-      ${NCEPLIBS_INSTALL_DIR}/lib
+      ${NECPLIBS_INSTALL_DIR}/lib
     )
-  set(POST_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "POST Include Location" )
+  set(POST_INC ${NECPLIBS_INSTALL_DIR}/include CACHE STRING "POST Include Location" )
 endif()

@@ -8,8 +8,7 @@ else()
   find_library( SFCIO_LIB4
     NAMES libsfcio_v${SFCIO_VER}_4.a
     HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-      ${NCEPLIBS_INSTALL_DIR}/lib
+      ${NECPLIBS_INSTALL_DIR}/lib
     )
-  set(SFCIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "SFCIO_4 Include Location" )
+  set(SFCIO_INC4 ${NECPLIBS_INSTALL_DIR}/include_4 CACHE STRING "SFCIO_4 Include Location" )
 endif()
