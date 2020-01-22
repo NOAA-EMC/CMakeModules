@@ -11,5 +11,9 @@ else()
       ${CMAKE_INSTALL_PREFIX}/lib
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(SFCIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "SFCIO_4 Include Location" )
+  if(${NCEPLIBS_INSTALL_DIR})
+    set(SFCIO_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "SFCIO_4 Include Location" )
+  else()
+    set(SFCIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "SFCIO_4 Include Location" )
+  endif()
 endif()

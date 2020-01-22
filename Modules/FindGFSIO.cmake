@@ -11,5 +11,9 @@ else()
       ${CMAKE_INSTALL_PREFIX}/lib
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(GFSIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "GFSIO Include Location" )
+  if(${NCEPLIBS_INSTALL_DIR})
+    set(GFSIO_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "GFSIO Include Location" )
+  else()
+    set(GFSIO_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "GFSIO Include Location" )
+  endif()
 endif()

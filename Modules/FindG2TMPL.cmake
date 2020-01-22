@@ -11,5 +11,9 @@ else()
       ${CMAKE_INSTALL_PREFIX}/lib
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(G2TMPL_INCd ${CMAKE_INSTALL_PREFIX}/include_d CACHE STRING "G2TMPL_d Include Location" )
+  if(${NCEPLIBS_INSTALL_DIR})
+    set(G2TMPL_INCd ${NCEPLIBS_INSTALL_DIR}/include_d CACHE STRING "G2TMPL_d Include Location" )
+  else()
+    set(G2TMPL_INCd ${CMAKE_INSTALL_PREFIX}/include_d CACHE STRING "G2TMPL_d Include Location" )
+  endif()
 endif()

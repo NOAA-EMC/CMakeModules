@@ -11,5 +11,9 @@ else()
       ${CMAKE_INSTALL_PREFIX}/lib
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(NEMSIOGFS_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "NEMSIOGFS Include Location" )
+  if(${NCEPLIBS_INSTALL_DIR})
+    set(NEMSIOGFS_INC ${NCEPLIBS_INSTALL_DIR}/include CACHE STRING "NEMSIOGFS Include Location" )
+  else()
+    set(NEMSIOGFS_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "NEMSIOGFS Include Location" )
+  endif()
 endif()
