@@ -8,7 +8,7 @@ else()
   find_library( G2TMPL_LIBd
     NAMES libg2tmpl_v${G2TMPL_VER}_d.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(G2TMPL_INCd ${NECPLIBS_INSTALL_DIR}/include_d CACHE STRING "G2TMPL_d Include Location" )
+  set(G2TMPL_INCd ${NCEPLIBS_INSTALL_DIR}/include_d CACHE STRING "G2TMPL_d Include Location" )
 endif()

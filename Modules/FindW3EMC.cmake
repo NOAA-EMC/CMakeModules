@@ -14,19 +14,19 @@ else()
   find_library( W3EMC_LIB4
     NAMES libw3emc_v${W3EMC_VER}_4.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( W3EMC_LIB8
     NAMES libw3emc_v${W3EMC_VER}_8.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( W3EMC_LIBd
     NAMES libw3emc_v${W3EMC_VER}_d.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(W3EMC_INC4 ${NECPLIBS_INSTALL_DIR}/include_4 CACHE STRING "W3EMC_4 Include Location" )
-  set(W3EMC_INC8 ${NECPLIBS_INSTALL_DIR}/include_8 CACHE STRING "W3EMC_8 Include Location" )
-  set(W3EMC_INCd ${NECPLIBS_INSTALL_DIR}/include_d CACHE STRING "W3EMC_d Include Location" )
+  set(W3EMC_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "W3EMC_4 Include Location" )
+  set(W3EMC_INC8 ${NCEPLIBS_INSTALL_DIR}/include_8 CACHE STRING "W3EMC_8 Include Location" )
+  set(W3EMC_INCd ${NCEPLIBS_INSTALL_DIR}/include_d CACHE STRING "W3EMC_d Include Location" )
 endif()

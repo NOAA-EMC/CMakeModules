@@ -9,12 +9,12 @@ else()
   find_library( W3NCO_LIBd
     NAMES libw3nco_v${W3NCO_VER}_d.a libw3nco_v2.0.6_d.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( W3NCO_LIB4
     NAMES libw3nco_v${W3NCO_VER}_4.a libw3nco_v2.0.6_4.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( W3NCO_LIB8
     NAMES libw3nco_v${W3NCO_VER}_8.a libw3nco_v2.0.6_8.a

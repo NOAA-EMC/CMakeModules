@@ -17,8 +17,8 @@ else()
     HINTS
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(G2_INC4 ${NECPLIBS_INSTALL_DIR}/include_4 CACHE STRING "G2_4 Include Location" )
-  set(G2_INCd ${NECPLIBS_INSTALL_DIR}/include_d CACHE STRING "G2_d Include Location" )
+  set(G2_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "G2_4 Include Location" )
+  set(G2_INCd ${NCEPLIBS_INSTALL_DIR}/include_d CACHE STRING "G2_d Include Location" )
 endif()
 
 

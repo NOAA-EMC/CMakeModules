@@ -10,7 +10,7 @@ else()
   find_library( POST_LIB
     NAMES libip_v${POST_VER}.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(POST_INC ${NECPLIBS_INSTALL_DIR}/include CACHE STRING "POST Include Location" )
+  set(POST_INC ${NCEPLIBS_INSTALL_DIR}/include CACHE STRING "POST Include Location" )
 endif()

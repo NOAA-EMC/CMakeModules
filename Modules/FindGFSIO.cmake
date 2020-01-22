@@ -8,7 +8,7 @@ else()
   find_library( GFSIO_LIB4
     NAMES libgfsio_v${GFSIO_VER}_4.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(GFSIO_INC4 ${NECPLIBS_INSTALL_DIR}/include_4 CACHE STRING "GFSIO Include Location" )
+  set(GFSIO_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "GFSIO Include Location" )
 endif()

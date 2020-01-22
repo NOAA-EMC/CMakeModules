@@ -8,7 +8,7 @@ else()
   find_library( NEMSIO_LIB
     NAMES libnemsio_v${NEMSIO_VER}.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(NEMSIO_INC ${NECPLIBS_INSTALL_DIR}/include CACHE STRING "NEMSIO Include Location" )
+  set(NEMSIO_INC ${NCEPLIBS_INSTALL_DIR}/include CACHE STRING "NEMSIO Include Location" )
 endif()

@@ -10,12 +10,12 @@ else()
   find_library( SP_LIBd
     NAMES libsp_v${SP_VER}_d.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( SP_LIB4
     NAMES libsp_v${SP_VER}_4.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( SP_LIB8
     NAMES libsp_v${SP_VER}_8.a

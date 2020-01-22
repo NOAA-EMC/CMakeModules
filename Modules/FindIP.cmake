@@ -13,19 +13,19 @@ else()
   find_library( IP_LIBd
     NAMES libip_v${IP_VER}_d.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( IP_LIB4
     NAMES libip_v${IP_VER}_4.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
   find_library( IP_LIB8
     NAMES libip_v${IP_VER}_8.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(IP_INC4 ${NECPLIBS_INSTALL_DIR}/include_4 CACHE STRING "IP_4 Include Location" )
-  set(IP_INC8 ${NECPLIBS_INSTALL_DIR}/include_8 CACHE STRING "IP_8 Include Location" )
-  set(IP_INCd ${NECPLIBS_INSTALL_DIR}/include_d CACHE STRING "IP_d Include Location" )
+  set(IP_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "IP_4 Include Location" )
+  set(IP_INC8 ${NCEPLIBS_INSTALL_DIR}/include_8 CACHE STRING "IP_8 Include Location" )
+  set(IP_INCd ${NCEPLIBS_INSTALL_DIR}/include_d CACHE STRING "IP_d Include Location" )
 endif()

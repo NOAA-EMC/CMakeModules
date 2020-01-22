@@ -8,7 +8,7 @@ else()
   find_library( NEMSIOGFS_LIB
     NAMES libnemsio_v${NEMSIOGFS_VER}.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(NEMSIOGFS_INC ${NECPLIBS_INSTALL_DIR}/include CACHE STRING "NEMSIOGFS Include Location" )
+  set(NEMSIOGFS_INC ${NCEPLIBS_INSTALL_DIR}/include CACHE STRING "NEMSIOGFS Include Location" )
 endif()

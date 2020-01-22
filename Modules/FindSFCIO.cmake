@@ -8,7 +8,7 @@ else()
   find_library( SFCIO_LIB4
     NAMES libsfcio_v${SFCIO_VER}_4.a
     HINTS
-      ${NECPLIBS_INSTALL_DIR}/lib
+      ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(SFCIO_INC4 ${NECPLIBS_INSTALL_DIR}/include_4 CACHE STRING "SFCIO_4 Include Location" )
+  set(SFCIO_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "SFCIO_4 Include Location" )
 endif()
