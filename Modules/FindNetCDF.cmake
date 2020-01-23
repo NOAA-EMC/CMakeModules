@@ -32,9 +32,15 @@ if (NETCDF_INCLUDES AND NETCDF_LIBRARIES)
 endif (NETCDF_INCLUDES AND NETCDF_LIBRARIES)
 
 find_path (NETCDF_INCLUDES netcdf.h
-  HINTS ${NETCDF_DIR}/include )
+  HINTS ${NETCDF}/include ${NETCDF_DIR}/include $ENV{NETCDF}/include $ENV{NETCDF_DIR} )
 
-find_library (NETCDF_LIBRARIES_C NAMES libnetcdf.so libnetcdf.a libnetcdf.dylib HINTS ${NETCDF_DIR}/lib )
+find_path (NETCDF_INCLUDES_FORTRAN netcdf.inc
+  HINTS ${NETCDF_F90}/include ${NETCDF_FORTRAN}/include $ENV{NETCDF_FORTRAN}/include )
+message("fortran incs are ${NETCDF_INCLUDES_FORTRAN}")
+#set(NETCDF_INCLUDES "${NETCDF_INCLUDES};${NETCDF_INCLUDES_FORTRAN}")
+#message("incs are ${NETCDF_INCLUDES}")
+
+find_library (NETCDF_LIBRARIES_C NAMES libnetcdf.so libnetcdf.a libnetcdf.dylib HINTS ${NETCDF}/lib ${NETCDF_DIR}/lib )
 mark_as_advanced(NETCDF_LIBRARIES_C)
 
 set (NetCDF_has_interfaces "YES") # will be set to NO if we're missing any interfaces
@@ -42,12 +48,13 @@ set (NetCDF_libs "${NETCDF_LIBRARIES_C}")
 
 get_filename_component (NetCDF_lib_dirs "${NETCDF_LIBRARIES_C}" PATH)
 
+
 macro (NetCDF_check_interface lang header libs)
   if (NETCDF_${lang})
     find_path (NETCDF_INCLUDES_${lang} NAMES ${header}
-      HINTS "${NETCDF_INCLUDES}" NO_DEFAULT_PATH)
+      HINTS ${NETCDF_INCLUDES} ${NETCDF_INCLUDES_FORTRAN} NO_DEFAULT_PATH)
     find_library (NETCDF_LIBRARIES_${lang} NAMES ${libs}
-      HINTS "${NetCDF_lib_dirs}" NO_DEFAULT_PATH)
+      HINTS ${NetCDF_lib_dirs} $ENV{NETCDF_FORTRAN}/lib $ENV{NETCDF_FORTRAN}/lib64 NO_DEFAULT_PATH)
     mark_as_advanced (NETCDF_INCLUDES_${lang} NETCDF_LIBRARIES_${lang})
     if (NETCDF_INCLUDES_${lang} AND NETCDF_LIBRARIES_${lang})
       list (INSERT NetCDF_libs 0 ${NETCDF_LIBRARIES_${lang}}) # prepend so that -lnetcdf is last
@@ -63,7 +70,9 @@ NetCDF_check_interface (F77 netcdf.inc  netcdff)
 NetCDF_check_interface (F90 netcdf.mod  netcdff)
 
 set (NETCDF_LIBRARIES "${NetCDF_libs}" CACHE STRING "All NetCDF libraries required for interface level")
-
+if(NOT (${NETCDF_INCLUDES_FORTRAN} STREQUAL "netcdf.inc-NOTFOUND"))
+  set (NETCDF_INCLUDES "${NETCDF_INCLUDES};${NETCDF_INCLUDES_FORTRAN}")
+endif()
 # handle the QUIETLY and REQUIRED arguments and set NETCDF_FOUND to TRUE if
 # all listed variables are TRUE
 include (FindPackageHandleStandardArgs)
