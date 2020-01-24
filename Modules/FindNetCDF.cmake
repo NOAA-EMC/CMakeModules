@@ -22,8 +22,6 @@
 #  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# This module was taken from https://github.com/jedbrown/cmake-modules
-
 # - Find NetCDF
 # Find the native NetCDF includes and library
 #
@@ -59,15 +57,13 @@ if (NETCDF_INCLUDES AND NETCDF_LIBRARIES)
   set (NETCDF_FIND_QUIETLY TRUE)
 endif (NETCDF_INCLUDES AND NETCDF_LIBRARIES)
 
-
-
 if(DEFINED ENV{NETCDF_FORTRAN})
   set(NETCDF_F_DIR $ENV{NETCDF_FORTRAN})
 endif()
 
 find_path (NETCDF_INCLUDES netcdf.h HINTS ENV NETCDF)
 
-find_library (NETCDF_LIBRARIES_C NAMES netcdf HINTS ENV NETCDF)
+find_library (NETCDF_LIBRARIES_C NAMES netcdf HINTS ${NETCDF} ENV NETCDF)
 mark_as_advanced(NETCDF_LIBRARIES_C)
 
 set (NetCDF_has_interfaces "YES") # will be set to NO if we're missing any interfaces
@@ -78,9 +74,9 @@ get_filename_component (NetCDF_lib_dirs "${NETCDF_LIBRARIES_C}" PATH)
 macro (NetCDF_check_interface lang header libs)
   if (NETCDF_${lang})
     find_path (NETCDF_INCLUDES_${lang} NAMES ${header}
-      HINTS ENV NETCDF NETCDF_FORTRAN NO_DEFAULT_PATH)
+      HINTS ${NETCDF} ENV NETCDF NETCDF_FORTRAN)
     find_library (NETCDF_LIBRARIES_${lang} NAMES ${libs}
-      HINTS ENV NETCDF_FORTRAN NO_DEFAULT_PATH)
+      HINTS ${NETCDF} ENV NETCDF_FORTRAN)
     mark_as_advanced (NETCDF_INCLUDES_${lang} NETCDF_LIBRARIES_${lang})
     if (NETCDF_INCLUDES_${lang} AND NETCDF_LIBRARIES_${lang})
       list (INSERT NetCDF_libs 0 ${NETCDF_LIBRARIES_${lang}}) # prepend so that -lnetcdf is last
