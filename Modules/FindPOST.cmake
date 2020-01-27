@@ -12,5 +12,9 @@ else()
     HINTS
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(POST_INC ${NCEPLIBS_INSTALL_DIR}/include CACHE STRING "POST Include Location" )
+  if(${NCEPLIBS_INSTALL_DIR})
+    set(POST_INC ${NCEPLIBS_INSTALL_DIR}/include CACHE STRING "POST Include Location" )
+  else()
+    set(POST_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "POST Include Location" )
+  endif()
 endif()

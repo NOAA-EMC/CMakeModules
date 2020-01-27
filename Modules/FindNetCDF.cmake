@@ -139,6 +139,7 @@ set (NetCDF_has_interfaces "YES") # will be set to NO if we're missing any inter
 set (NetCDF_libs  ${NETCDF_LIBRARIES_C} ${NETCDF_LIBRARIES_Fortran})
 get_filename_component (NetCDF_lib_dirs "${NETCDF_LIBRARIES_C}" PATH)
 
+
 macro (NetCDF_check_interface lang header libs)
   if (NETCDF_${lang})
     find_path (NETCDF_INCLUDES_${lang} NAMES ${header}

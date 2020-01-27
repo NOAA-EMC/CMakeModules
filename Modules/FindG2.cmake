@@ -17,8 +17,13 @@ else()
     HINTS
       ${NCEPLIBS_INSTALL_DIR}/lib
     )
-  set(G2_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "G2_4 Include Location" )
-  set(G2_INCd ${NCEPLIBS_INSTALL_DIR}/include_d CACHE STRING "G2_d Include Location" )
+  if(${NCEPLIBS_INSTALL_DIR})
+    set(G2_INC4 ${NCEPLIBS_INSTALL_DIR}/include_4 CACHE STRING "G2_4 Include Location" )
+    set(G2_INCd ${NCEPLIBS_INSTALL_DIR}/include_d CACHE STRING "G2_d Include Location" )
+  else()
+    set(G2_INC4 ${CMAKE_INSTALL_PREFIX}/include_4 CACHE STRING "G2_4 Include Location" )
+    set(G2_INCd ${CMAKE_INSTALL_PREFIX}/include_d CACHE STRING "G2_d Include Location" )
+  endif()
 endif()
 
 
