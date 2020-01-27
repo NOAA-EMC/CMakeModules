@@ -71,14 +71,15 @@ if (ESMF_FOUND)
       endif()
     endif()
   endforeach()
+
+  string(REPLACE "-I" "" ESMF_F90COMPILEPATHS ${ESMF_F90COMPILEPATHS})
+  string(REPLACE " " ";" ESMF_F90COMPILEPATHS ${ESMF_F90COMPILEPATHS})
+
+  add_library(esmf SHARED IMPORTED)
+  find_library(esmf_lib NAMES esmf_fullylinked PATHS ${ESMF_LIBSDIR})
+
+  set_target_properties(esmf PROPERTIES
+    IMPORTED_LOCATION ${esmf_lib}
+    INTERFACE_INCLUDE_DIRECTORIES "${ESMF_F90COMPILEPATHS}")
+
 endif()
-
-string(REPLACE "-I" "" ESMF_F90COMPILEPATHS ${ESMF_F90COMPILEPATHS})
-string(REPLACE " " ";" ESMF_F90COMPILEPATHS ${ESMF_F90COMPILEPATHS})
-
-add_library(esmf SHARED IMPORTED)
-find_library(esmf_lib NAMES esmf_fullylinked PATHS ${ESMF_LIBSDIR})
-
-set_target_properties(esmf PROPERTIES
-  IMPORTED_LOCATION ${esmf_lib}
-  INTERFACE_INCLUDE_DIRECTORIES "${ESMF_F90COMPILEPATHS}")
