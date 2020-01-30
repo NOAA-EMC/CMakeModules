@@ -11,12 +11,15 @@ if(DEFINED ENV{NEMSIO_LIB} )
   set(version ${CMAKE_MATCH_1})
 
   set(versioned_lib_name ${name}_${version})
-
-  get_filename_component(lib_dir ${${uppercase_name}_LIB$} DIRECTORY)
-  find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+  message("looking for ${${uppercase_name}_LIB}")
+  if(EXISTS ${${uppercase_name}_LIB} )
+    message("found ${${uppercase_name}_LIB}")
+    get_filename_component(lib_dir ${${uppercase_name}_LIB} DIRECTORY)
+    find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
   
-  add_library(${name} STATIC IMPORTED)
-  set_target_properties(${name} PROPERTIES
-    IMPORTED_LOCATION ${lib_path}
-    INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
+    add_library(${name} STATIC IMPORTED)
+    set_target_properties(${name} PROPERTIES
+      IMPORTED_LOCATION ${lib_path}
+      INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
+  endif()
 endif()

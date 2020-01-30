@@ -9,7 +9,7 @@ if(DEFINED ENV{G2_LIBd})
   set(name "g2")
   string(TOUPPER ${name} uppercase_name)
 
-  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB4})
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIBd})
   set(version ${CMAKE_MATCH_1})
 
   set(kinds "4" "d")
@@ -17,12 +17,14 @@ if(DEFINED ENV{G2_LIBd})
     set(lib_name ${name}_${kind})
     set(versioned_lib_name ${name}_${version}_${kind})
 
-    get_filename_component(lib_dir ${${uppercase_name}_LIB${kind}} DIRECTORY)
-    find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+    if(EXISTS ${${uppercase_name}_LIB${kind}} )
+      get_filename_component(lib_dir ${${uppercase_name}_LIB${kind}} DIRECTORY)
+      find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
     
-    add_library(${lib_name} STATIC IMPORTED)
-    set_target_properties(${lib_name} PROPERTIES
-      IMPORTED_LOCATION ${lib_path}
-      INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC${kind}})
+      add_library(${lib_name} STATIC IMPORTED)
+      set_target_properties(${lib_name} PROPERTIES
+        IMPORTED_LOCATION ${lib_path}
+        INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC${kind}})
+    endif()
   endforeach()
 endif()
