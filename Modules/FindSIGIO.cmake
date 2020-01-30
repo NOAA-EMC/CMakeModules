@@ -12,7 +12,7 @@ if(DEFINED ENV{SIGIO_LIB4} )
 
   set(versioned_lib_name ${name}_${version})
 
-  if(EXISTS ${${uppercase_name}_LIB$4} )
+  if(EXISTS ${${uppercase_name}_LIB4} )
     get_filename_component(lib_dir ${${uppercase_name}_LIB4} DIRECTORY)
     find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
   
