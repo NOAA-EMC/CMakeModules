@@ -1,7 +1,7 @@
 # This module looks for environment variables detailing where W3EMC lib is
 # If variables are not set, W3EMC will be built from external source
 
-if(DEFINED ENV{W3EMC_LIB4} )
+if(DEFINED ENV{W3EMC_LIBd} )
   set(W3EMC_VER $ENV{W3EMC_VER} CACHE STRING "W3EMC Version")
   set(W3EMC_LIB4 $ENV{W3EMC_LIB4} CACHE STRING "W3EMC_4 Library Location")
   set(W3EMC_LIB8 $ENV{W3EMC_LIB8} CACHE STRING "W3EMC_8 Library Location")
