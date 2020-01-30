@@ -13,7 +13,7 @@ if(DEFINED ENV{SFCIO_LIB4} )
   set(versioned_lib_name ${name}_${version})
 
   if(EXISTS ${${uppercase_name}_LIB${kind}} )
-    get_filename_component(lib_dir ${${uppercase_name}_LIB4$} DIRECTORY)
+    get_filename_component(lib_dir ${${uppercase_name}_LIB4} DIRECTORY)
     find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
   
     add_library(${name} STATIC IMPORTED)

@@ -13,7 +13,7 @@ if(DEFINED ENV{W3EMC_LIBd} )
   set(name "w3emc")
   string(TOUPPER ${name} uppercase_name)
 
-  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB4})
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIBd})
   set(version ${CMAKE_MATCH_1})
 
   set(kinds "4" "d" "8")
@@ -21,7 +21,7 @@ if(DEFINED ENV{W3EMC_LIBd} )
     set(lib_name ${name}_${kind})
     set(versioned_lib_name ${name}_${version}_${kind})
 
-    if(EXISTS ${${uppercase_name}_LIB${kind}} )
+    if((EXISTS ${${uppercase_name}_LIB${kind}}) AND (EXISTS ${${uppercase_name}_INC${kind}}))
       get_filename_component(lib_dir ${${uppercase_name}_LIB${kind}} DIRECTORY)
       find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
     

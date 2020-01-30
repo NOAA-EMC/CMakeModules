@@ -8,7 +8,7 @@ if(DEFINED ENV{W3NCO_LIBd} )
   set(name "w3nco")
   string(TOUPPER ${name} uppercase_name)
 
-  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB4})
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIBd})
   set(version ${CMAKE_MATCH_1})
 
   set(kinds "4" "d" "8")
