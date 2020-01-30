@@ -4,12 +4,20 @@ if(DEFINED ENV{CRTM_LIB})
   set(CRTM_VER $ENV{CRTM_VER} CACHE STRING "CRTM Version")
   set(CRTM_LIB $ENV{CRTM_LIB} CACHE STRING "CRTM Library Location")
   set(CRTM_INC $ENV{CRTM_INC} CACHE STRING "CRTM Library Location")
-else()
-  set(CRTM_VER 2.3.0)
-  find_library( CRTM_LIB 
-    NAMES libcrtm_v${CRTM_VER}.a 
-    HINTS 
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
-  set(CRTM_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "CRTM Include Location")
+
+  set(name "crtm")
+  string(TOUPPER ${name} uppercase_name)
+  
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uupercase_name}_LIB})
+  set(version ${CMAKE_MATCH_1})
+
+  set(versioned_lib_name ${name}_${version})
+
+  get_filename_component(lib_dir ${${uppercase_name}_LIB} DIRECTORY)
+  find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+  
+  add_library(${name} STATIC IMPORTED)
+  set_target_properties(${name} PROPERTIES
+    IMPORTED_LOCATION ${lib_path}
+    INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
 endif()

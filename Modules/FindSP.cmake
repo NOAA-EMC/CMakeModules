@@ -5,21 +5,25 @@ if(DEFINED ENV{SP_LIBd} )
   set(SP_LIBd $ENV{SP_LIBd} CACHE STRING "SP_d Library Location" )
   set(SP_LIB4 $ENV{SP_LIB4} CACHE STRING "SP_4 Library Location" )
   set(SP_LIB8 $ENV{SP_LIB8} CACHE STRING "SP_8 Library Location" )
-else()
-  set(SP_VER 2.0.2)
-  find_library( SP_LIBd
-    NAMES libsp_v${SP_VER}_d.a
-    HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
-  find_library( SP_LIB4
-    NAMES libsp_v${SP_VER}_4.a
-    HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
-  find_library( SP_LIB8
-    NAMES libsp_v${SP_VER}_8.a
-    HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
+
+  set(name "sp")
+  string(TOUPPER ${name} uppercase_name)
+
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIBd})
+  set(version ${CMAKE_MATCH_1})
+
+  set(kinds "4" "d" "8")
+  foreach(kind ${kinds})
+    set(lib_name ${name}_${kind})
+    set(versioned_lib_name ${name}_${version}_${kind})
+
+    if(EXISTS ${${uppercase_name}_LIB${kind}} )
+      get_filename_component(lib_dir ${${uppercase_name}_LIB${kind}} DIRECTORY)
+      find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+    
+      add_library(${lib_name} STATIC IMPORTED)
+      set_target_properties(${lib_name} PROPERTIES
+        IMPORTED_LOCATION ${lib_path})
+    endif()
+  endforeach()
 endif()

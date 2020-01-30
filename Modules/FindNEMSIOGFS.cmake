@@ -3,12 +3,22 @@
 if(DEFINED ENV{NEMSIOGFS_LIB} )
   set(NEMSIOGFS_LIB $ENV{NEMSIOGFS_LIB} CACHE STRING "NEMSIOGFS Library Location" )
   set(NEMSIOGFS_INC $ENV{NEMSIOGFS_INC} CACHE STRING "NEMSIOGFS Include Location" )
-else()
-  set(NEMSIOGFS_VER 2.2.1)
-  find_library( NEMSIOGFS_LIB
-    NAMES libnemsio_v${NEMSIOGFS_VER}.a
-    HINTS
-      ${CMAKE_INSTALL_PREFIX}/lib
-    )
-  set(NEMSIOGFS_INC ${CMAKE_INSTALL_PREFIX}/include CACHE STRING "NEMSIOGFS Include Location" )
+
+  set(name "nemsiogfs")
+  string(TOUPPER ${name} uppercase_name)
+
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB})
+  set(version ${CMAKE_MATCH_1})
+
+  set(versioned_lib_name ${name}_${version})
+
+  if(EXISTS ${${uppercase_name}_LIB${kind}} )
+  get_filename_component(lib_dir ${${uppercase_name}_LIB$} DIRECTORY)
+    find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+  
+    add_library(${name} STATIC IMPORTED)
+    set_target_properties(${name} PROPERTIES
+      IMPORTED_LOCATION ${lib_path}
+      INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
+  endif()
 endif()
