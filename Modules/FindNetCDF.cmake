@@ -152,6 +152,7 @@ else()
   if( NETCDF_LIBRARIES_F90 )
     set( NETCDF4 "YES" )
   endif()
+endif()
 
 macro (NetCDF_check_interface lang header libs)
   if (NETCDF_${lang})
