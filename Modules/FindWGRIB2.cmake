@@ -12,7 +12,7 @@ find_library (WGRIB2_LIBRARIES
   HINTS ${WGRIB2_ROOT}/lib ${WGRIB2_ROOT}/lib64)
 
 if(EXISTS ${WGRIB2_INCLUDES} AND EXISTS ${WGRIB2_LIBRARIES})
-  message(STATUS "Found WGRIB2: include directory ${WGRIB2_INCLUDES}, libary ${WGRIB2_LIBRARIES}")
+  message(STATUS "Found WGRIB2: include directory ${WGRIB2_INCLUDES}, library ${WGRIB2_LIBRARIES}")
 else()
   message(STATUS "Unable to locate WGRIB2 library and/or Fortran modules")
 endif()
