@@ -79,11 +79,23 @@ if (ESMF_FOUND)
   endforeach()
   set(ESMF_F90COMPILEPATHS ${tmp})
 
-  add_library(esmf SHARED IMPORTED)
+  add_library(esmf UNKNOWN IMPORTED)
   find_library(esmf_lib NAMES esmf_fullylinked PATHS ${ESMF_LIBSDIR})
+  if(esmf_lib MATCHES "esmf_lib-NOTFOUND")
+    message(STATUS "Dynamic/fully-linked ESMF library not found, searching for static library instead")
+    find_library(esmf_lib NAMES esmf PATHS ${ESMF_LIBSDIR})
+    if(esmf_lib MATCHES "esmf_lib-NOTFOUND")
+      message(WARNING "Neither the dynamic nor the static ESMF library was found")
+    endif()
+    # When linking the static library, also need the ESMF linker flags
+    set(ESMF_INTERFACE_LINK_LIBRARIES "${ESMF_F90ESMFLINKRPATHS} ${ESMF_F90ESMFLINKPATHS} ${ESMF_F90ESMFLINKLIBS}")
+  else()
+    set(ESMF_INTERFACE_LINK_LIBRARIES "")
+  endif()
 
   set_target_properties(esmf PROPERTIES
     IMPORTED_LOCATION ${esmf_lib}
-    INTERFACE_INCLUDE_DIRECTORIES "${ESMF_F90COMPILEPATHS}")
+    INTERFACE_INCLUDE_DIRECTORIES "${ESMF_F90COMPILEPATHS}"
+    INTERFACE_LINK_LIBRARIES "${ESMF_INTERFACE_LINK_LIBRARIES}")
 
 endif()
