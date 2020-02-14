@@ -8,7 +8,7 @@ if(DEFINED ENV{CRTM_LIB})
   set(name "crtm")
   string(TOUPPER ${name} uppercase_name)
   
-  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uupercase_name}_LIB})
+  string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB})
   set(version ${CMAKE_MATCH_1})
 
   set(versioned_lib_name ${name}_${version})
