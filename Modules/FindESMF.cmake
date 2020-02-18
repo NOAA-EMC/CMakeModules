@@ -87,8 +87,8 @@ if (ESMF_FOUND)
     if(esmf_lib MATCHES "esmf_lib-NOTFOUND")
       message(WARNING "Neither the dynamic nor the static ESMF library was found")
     endif()
-    # When linking the static library, also need the ESMF linker flags
-    set(ESMF_INTERFACE_LINK_LIBRARIES "${ESMF_F90ESMFLINKRPATHS} ${ESMF_F90ESMFLINKPATHS} ${ESMF_F90ESMFLINKLIBS}")
+    # When linking the static library, also need the ESMF linker flags; strip any leading/trailing whitespaces
+    string(STRIP "${ESMF_F90ESMFLINKRPATHS} ${ESMF_F90ESMFLINKPATHS} ${ESMF_F90LINKLIBS} ${ESMF_F90LINKOPTS}" ESMF_INTERFACE_LINK_LIBRARIES)
   else()
     set(ESMF_INTERFACE_LINK_LIBRARIES "")
   endif()
