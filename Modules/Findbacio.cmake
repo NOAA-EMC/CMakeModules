@@ -18,11 +18,11 @@ if(DEFINED ENV{BACIO_LIB4})
 
     if(EXISTS ${${uppercase_name}_LIB${kind}} )
       get_filename_component(lib_dir ${${uppercase_name}_LIB${kind}} DIRECTORY)
-      find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+      find_library(bacio_path_${kind} NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
      
       add_library(${lib_name} STATIC IMPORTED)
       set_target_properties(${lib_name} PROPERTIES
-        IMPORTED_LOCATION ${lib_path})
+        IMPORTED_LOCATION ${bacio_path_${kind}})
     endif()
   endforeach()
 
