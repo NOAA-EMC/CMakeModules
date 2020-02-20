@@ -1,7 +1,7 @@
 # This module looks for environment variables detailing where SP lib is
 # If variables are not set, SP will be built from external source
 
-if(DEFINED ENV{SP_LIBd} )
+if(DEFINED ENV{SP_LIBd})
   set(SP_LIBd $ENV{SP_LIBd} CACHE STRING "SP_d Library Location" )
   set(SP_LIB4 $ENV{SP_LIB4} CACHE STRING "SP_4 Library Location" )
   set(SP_LIB8 $ENV{SP_LIB8} CACHE STRING "SP_8 Library Location" )
@@ -19,11 +19,12 @@ if(DEFINED ENV{SP_LIBd} )
 
     if(EXISTS ${${uppercase_name}_LIB${kind}} )
       get_filename_component(lib_dir ${${uppercase_name}_LIB${kind}} DIRECTORY)
-      find_library(lib_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
-    
+      find_library(sp_path_${kind} NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
+      message("sp: ${sp_path_${kind}}")
+      message("versioned_lib_name: ${versioned_lib_name}")
       add_library(${lib_name} STATIC IMPORTED)
       set_target_properties(${lib_name} PROPERTIES
-        IMPORTED_LOCATION ${lib_path})
+        IMPORTED_LOCATION ${sp_path_${kind}})
     endif()
   endforeach()
 endif()
