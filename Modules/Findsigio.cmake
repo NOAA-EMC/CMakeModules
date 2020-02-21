@@ -26,3 +26,6 @@ if(DEFINED ENV{SIGIO_LIB4} )
     endif()
   endforeach()
 endif()
+
+find_package_handle_standard_args(sigio
+  REQUIRED_VARS sigio_path)

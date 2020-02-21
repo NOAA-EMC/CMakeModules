@@ -26,3 +26,6 @@ if(DEFINED ENV{G2TMPL_LIBd} )
     endif()
   endforeach()
 endif()
+
+find_package_handle_standard_args(g2tmpl
+  REQUIRED_VARS g2tmpl_path_d)

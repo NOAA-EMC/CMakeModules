@@ -26,3 +26,6 @@ if(DEFINED ENV{W3NCO_LIBd} )
     endif()
   endforeach()
 endif()
+
+find_package_handle_standard_args(w3nco
+  REQUIRED_VARS w3nco_path_d)

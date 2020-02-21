@@ -21,3 +21,6 @@ if(DEFINED ENV{CRTM_LIB})
     IMPORTED_LOCATION ${crtm_path}
     INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
 endif()
+
+find_package_handle_standard_args(crtm
+  REQUIRED_VARS crtm_path)
