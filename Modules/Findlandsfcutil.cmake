@@ -32,3 +32,6 @@ if(DEFINED ENV{LANDSFCUTIL_LIB4} )
     endif()
   endforeach()
 endif()
+
+find_package_handle_standard_args(landsfcutil
+  REQUIRED_VARS landsfcutil_path_4)

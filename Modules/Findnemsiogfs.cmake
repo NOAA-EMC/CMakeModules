@@ -22,3 +22,6 @@ if(DEFINED ENV{NEMSIOGFS_LIB} )
       INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
   endif()
 endif()
+
+find_package_handle_standard_args(nemsiogfs
+  REQUIRED_VARS nemsiogfs_path)

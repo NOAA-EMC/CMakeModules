@@ -26,3 +26,6 @@ if(DEFINED ENV{SFCIO_LIB4} )
     endif()
   endforeach()
 endif()
+
+find_package_handle_standard_args(sfcio
+  REQUIRED_VARS sfcio_path)

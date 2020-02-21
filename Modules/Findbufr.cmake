@@ -28,3 +28,6 @@ if(DEFINED ENV{BUFR_LIB4} )
   endforeach()
   
 endif()
+
+find_package_handle_standard_args(bufr
+  REQUIRED_VARS bufr_path_4)

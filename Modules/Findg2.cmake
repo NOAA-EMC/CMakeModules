@@ -28,3 +28,6 @@ if(DEFINED ENV{G2_LIBd})
     endif()
   endforeach()
 endif()
+
+find_package_handle_standard_args(g2
+  REQUIRED_VARS g2_path_d)

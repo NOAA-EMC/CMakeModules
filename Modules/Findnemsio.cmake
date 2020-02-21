@@ -11,9 +11,8 @@ if(DEFINED ENV{NEMSIO_LIB} )
   set(version ${CMAKE_MATCH_1})
 
   set(versioned_lib_name ${name}_${version})
-  message("looking for ${${uppercase_name}_LIB}")
+
   if(EXISTS ${${uppercase_name}_LIB} )
-    message("found ${${uppercase_name}_LIB}")
     get_filename_component(lib_dir ${${uppercase_name}_LIB} DIRECTORY)
     find_library(nemsio_path NAMES ${versioned_lib_name} PATHS ${lib_dir} NO_DEFAULT_PATH)
   
@@ -23,3 +22,6 @@ if(DEFINED ENV{NEMSIO_LIB} )
       INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
   endif()
 endif()
+
+find_package_handle_standard_args(nemsio
+  REQUIRED_VARS nemsio_path)
