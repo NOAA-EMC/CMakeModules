@@ -10,8 +10,8 @@ if(DEFINED ENV{G2TMPL_LIB} )
   string(REGEX MATCH "(v[0-9]+\\.[0-9]+\\.[0-9]+)" _ ${${uppercase_name}_LIB})
   set(version ${CMAKE_MATCH_1})
 
-  set(lib_name ${name}_${kind})
-  set(versioned_lib_name ${name}_${version}_${kind})
+  set(lib_name ${name})
+  set(versioned_lib_name ${name}_${version})
 
   if(EXISTS ${${uppercase_name}_LIB} )
     get_filename_component(lib_dir ${${uppercase_name}_LIB} DIRECTORY)
