@@ -21,7 +21,7 @@ if(DEFINED ENV{GFSIO_LIB4} )
     
       add_library(${lib_name} STATIC IMPORTED)
       set_target_properties(${lib_name} PROPERTIES
-        IMPORTED_LOCATION ${gfsio_path}_${kind}
+        IMPORTED_LOCATION ${gfsio_path_${kind}} 
         INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC${kind}})
     endif()
   endforeach()
