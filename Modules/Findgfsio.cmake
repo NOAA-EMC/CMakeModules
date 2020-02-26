@@ -12,8 +12,8 @@ if(DEFINED ENV{GFSIO_LIB4} )
 
   set(kinds "4")
   foreach(kind ${kinds})
-    set(lib_name ${name}_${kind})
-    set(versioned_lib_name ${name}_${version}_${kind})
+    set(lib_name ${name})
+    set(versioned_lib_name ${name}_${version}_${kinds})
 
     if(EXISTS ${${uppercase_name}_LIB${kind}} )
       get_filename_component(lib_dir ${${uppercase_name}_LIB${kind}} DIRECTORY)
@@ -28,4 +28,4 @@ if(DEFINED ENV{GFSIO_LIB4} )
 endif()
 
 find_package_handle_standard_args(gfsio
-  REQUIRED_VARS gfsio_path_4)
+  REQUIRED_VARS gfsio_path)
