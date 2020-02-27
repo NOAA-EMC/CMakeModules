@@ -79,9 +79,8 @@ if (NETCDF_META)
   endif()
 endif (NETCDF_META)
 
-set(NETCDF_IS_STATIC FALSE)
 find_library (NETCDF_flib
-     names libnetcdff.so netcdff.so libnetcdff.dylib netcdff.dylib
+     names libnetcdff.so netcdff.so libnetcdff.dylib netcdff.dylib libnetcdff.a netcdff.a
      HINTS
         ${NETCDF_DIR}/lib
         ${NETCDF_FORTRAN_DIR}/lib
@@ -93,26 +92,13 @@ find_library (NETCDF_flib
         ${NETCDF_FORTRAN_ROOT}/lib64
 )
 
-if(NETCDF_flib MATCHES "NETCDF_flib-NOTFOUND")
-  # Dynamic library not found, look for static library instead
-  find_library (NETCDF_flib
-       names libnetcdff.a netcdff.a
-       HINTS
-          ${NETCDF_DIR}/lib
-          ${NETCDF_FORTRAN_DIR}/lib
-          ${NETCDF_FORTRAN}/lib
-          ${NETCDF_FORTRAN_ROOT}/lib
-          ${NETCDF_DIR}/lib64
-          ${NETCDF_FORTRAN_DIR}/lib64
-          ${NETCDF_FORTRAN}/lib64
-          ${NETCDF_FORTRAN_ROOT}/lib64
-  )
-  if(NOT NETCDF_flib MATCHES "NETCDF_flib-NOTFOUND")
-    set(NETCDF_IS_STATIC TRUE)
-  endif()
-endif()
-
 if (NETCDF_flib)
+    get_filename_component(NETCDF_flib_ext ${NETCDF_flib} EXT)
+    if(NETCDF_flib_ext STREQUAL ".a")
+        set(NETCDF_IS_STATIC TRUE)
+    else()
+        set(NETCDF_IS_STATIC FALSE)
+    endif()
     set(NETCDF_F90 "YES")
 endif()
 find_library (NETCDF_LIBRARIES_C
