@@ -79,20 +79,43 @@ if (NETCDF_META)
   endif()
 endif (NETCDF_META)
 
+set(NETCDF_IS_STATIC FALSE)
 find_library (NETCDF_flib
-     names libnetcdff.a netcdff.a libnetcdff.so netcdff.so libnetcdff.dylib netcdff.dylib
+     names libnetcdff.so netcdff.so libnetcdff.dylib netcdff.dylib
      HINTS
         ${NETCDF_DIR}/lib
         ${NETCDF_FORTRAN_DIR}/lib
         ${NETCDF_FORTRAN}/lib
         ${NETCDF_FORTRAN_ROOT}/lib
+        ${NETCDF_DIR}/lib64
+        ${NETCDF_FORTRAN_DIR}/lib64
+        ${NETCDF_FORTRAN}/lib64
+        ${NETCDF_FORTRAN_ROOT}/lib64
 )
+
+if(NETCDF_flib MATCHES "NETCDF_flib-NOTFOUND")
+  # Dynamic library not found, look for static library instead
+  find_library (NETCDF_flib
+       names libnetcdff.a netcdff.a
+       HINTS
+          ${NETCDF_DIR}/lib
+          ${NETCDF_FORTRAN_DIR}/lib
+          ${NETCDF_FORTRAN}/lib
+          ${NETCDF_FORTRAN_ROOT}/lib
+          ${NETCDF_DIR}/lib64
+          ${NETCDF_FORTRAN_DIR}/lib64
+          ${NETCDF_FORTRAN}/lib64
+          ${NETCDF_FORTRAN_ROOT}/lib64
+  )
+  if(NOT NETCDF_flib MATCHES "NETCDF_flib-NOTFOUND")
+    set(NETCDF_IS_STATIC TRUE)
+  endif()
+endif()
 
 if (NETCDF_flib)
     set(NETCDF_F90 "YES")
-    
 endif()
-find_library (NETCDF_LIBRARIES_C       
+find_library (NETCDF_LIBRARIES_C
     NAMES netcdf
     HINTS ${NETCDF_DIR}/lib )
 mark_as_advanced(NETCDF_LIBRARIES_C)
@@ -174,6 +197,13 @@ if( NETCDF_LIBRARIES_F90 )
 endif()
 
 set (NETCDF_LIBRARIES "${NetCDF_libs}" CACHE STRING "All NetCDF libraries required for interface level")
+
+if(NETCDF_IS_STATIC)
+  find_package(HDF5 MODULE COMPONENTS C HL REQUIRED)
+  find_package(ZLIB MODULE REQUIRED)
+  set(NETCDF_LIBRARIES "${NETCDF_LIBRARIES};${HDF5_HL_LIBRARIES};${HDF5_LIBRARIES};${ZLIB_LIBRARIES}")
+endif()
+
 # handle the QUIETLY and REQUIRED arguments and set NETCDF_FOUND to TRUE if
 # all listed variables are TRUE
 include (FindPackageHandleStandardArgs)
