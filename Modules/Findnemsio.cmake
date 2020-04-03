@@ -23,5 +23,6 @@ if(DEFINED ENV{NEMSIO_LIB} )
   endif()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(nemsio
   REQUIRED_VARS nemsio_path)

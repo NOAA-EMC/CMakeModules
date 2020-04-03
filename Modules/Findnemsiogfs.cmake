@@ -23,5 +23,6 @@ if(DEFINED ENV{NEMSIOGFS_LIB} )
   endif()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(nemsiogfs
   REQUIRED_VARS nemsiogfs_path)

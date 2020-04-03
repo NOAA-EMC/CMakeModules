@@ -32,5 +32,6 @@ if(DEFINED ENV{IP_LIBd} )
   endforeach()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(ip
   REQUIRED_VARS ip_path_d)

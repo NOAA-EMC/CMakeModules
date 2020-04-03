@@ -27,5 +27,6 @@ if(DEFINED ENV{SIGIO_LIB4} )
   endforeach()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(sigio
   REQUIRED_VARS sigio_path)
