@@ -27,5 +27,6 @@ if(DEFINED ENV{SFCIO_LIB4} )
   endforeach()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(sfcio
   REQUIRED_VARS sfcio_path)

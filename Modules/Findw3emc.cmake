@@ -33,5 +33,6 @@ if(DEFINED ENV{W3EMC_LIBd} )
   endforeach()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(w3emc
   REQUIRED_VARS w3emc_path_d)

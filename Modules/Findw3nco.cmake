@@ -27,5 +27,6 @@ if(DEFINED ENV{W3NCO_LIBd} )
   endforeach()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(w3nco
   REQUIRED_VARS w3nco_path_d)

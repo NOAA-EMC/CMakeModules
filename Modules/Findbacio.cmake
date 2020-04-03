@@ -26,6 +26,7 @@ if(DEFINED ENV{BACIO_LIB4})
   endforeach()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(bacio
   REQUIRED_VARS bacio_path_4)
   

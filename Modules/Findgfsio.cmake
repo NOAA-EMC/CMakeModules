@@ -27,5 +27,6 @@ if(DEFINED ENV{GFSIO_LIB4} )
   endforeach()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(gfsio
   REQUIRED_VARS gfsio_path_4)

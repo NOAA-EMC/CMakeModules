@@ -22,5 +22,6 @@ if(DEFINED ENV{CRTM_LIB})
     INTERFACE_INCLUDE_DIRECTORIES ${${uppercase_name}_INC})
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(crtm
   REQUIRED_VARS crtm_path)

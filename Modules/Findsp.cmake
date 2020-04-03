@@ -28,5 +28,6 @@ if(DEFINED ENV{SP_LIBd})
   endforeach()
 endif()
 
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(sp
   REQUIRED_VARS sp_path_d)
