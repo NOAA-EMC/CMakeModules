@@ -71,10 +71,10 @@ set( NetCDF_CXX_INCLUDE_NAME        netcdf )
 set( NetCDF_Fortran_INCLUDE_NAME    netcdf.mod )
 
 ## Library names for each component
-set( NetCDF_C_LIBRARY_NAME          netcdf )
+set( NetCDF_C_LIBRARY_NAME          libnetcdf.a )
 set( NetCDF_CXX_LIBRARY_NAME        netcdf_c++4 )
 set( NetCDF_CXX_LEGACY_LIBRARY_NAME netcdf_c++ )
-set( NetCDF_Fortran_LIBRARY_NAME    netcdff )
+set( NetCDF_Fortran_LIBRARY_NAME    libnetcdff.a )
 
 ## Enumerate search components
 foreach( _comp ${_possible_components} )
@@ -93,7 +93,7 @@ foreach( _comp ${${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS} )
   endif()
 endforeach()
 if( NOT _search_components )
-  set( _search_components C)
+  set( _search_components C Fortran)
 endif()
 
 ## Search hints for finding include directories and libraries
