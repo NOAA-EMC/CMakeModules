@@ -263,10 +263,14 @@ endif ()
 
 ## Detect additional package properties
 netcdf_config(${NetCDF_C_CONFIG_EXECUTABLE} --has-parallel4 _val)
-if( NOT _val )
-    netcdf_config(${NetCDF_C_CONFIG_EXECUTABLE} --has-parallel _val)
+if( NOT _val MATCHES "^(yes|no)$" )
+  netcdf_config(${NetCDF_C_CONFIG_EXECUTABLE} --has-parallel _val)
 endif()
-set(NetCDF_PARALLEL ${_val} CACHE STRING "NetCDF has parallel IO capability via pnetcdf or hdf5." FORCE)
+if( _val MATCHES "^(yes)$" )
+  set(NetCDF_PARALLEL TRUE CACHE STRING "NetCDF has parallel IO capability via pnetcdf or hdf5." FORCE)
+else()
+  set(NetCDF_PARALLEL FALSE CACHE STRING "NetCDF has no parallel IO capability." FORCE)
+endif()
 
 ## Finalize find_package
 include(FindPackageHandleStandardArgs)
