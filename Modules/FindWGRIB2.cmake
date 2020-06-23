@@ -5,7 +5,7 @@ endif()
 
 find_path (WGRIB2_INCLUDES
   wgrib2api.mod
-  HINTS ${WGRIB2_ROOT}/include)
+  HINTS ${WGRIB2_ROOT}/include ${WGRIB2_ROOT}/lib)
 
 find_library (WGRIB2_LIBRARIES
   names libwgrib2.a
