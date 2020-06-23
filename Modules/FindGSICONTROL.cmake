@@ -2,7 +2,7 @@
 
 set( NO_DEFAULT_PATH )
 message("Control path is ${CONTROLPATH}")
-find_file( CONTROL_EXE 
+find_file( CONTROL_EXE
     NAMES gsi.x global_gsi ${GSIEXEC}
     HINTS
         ${CONTROLPATH}
@@ -22,12 +22,12 @@ find_file( CONTROL_EXE
         /gpfs/hps3/emc/da/noscrub/Michael.Lueken/svn1/src
         /scratch4/NCEPDEV/da/save/Michael.Lueken/svn1_old/build/bin
         /scratch4/NCEPDEV/da/save/Michael.Lueken/svn1/src
-   
+
     ${NO_DEFAULT_PATH})
 
 set( GSICONTROL ${CONTROL_EXE} CACHE STRING "GSI control executable for regression testing" FORCE )
 
-find_file( ENKF_CONTROL_EXE 
+find_file( ENKF_CONTROL_EXE
     NAMES enkf_gfs.x global_enkf ${ENKFEXEC}
     HINTS
         ${CONTROLPATH}
@@ -47,8 +47,7 @@ find_file( ENKF_CONTROL_EXE
         /gpfs/hps3/emc/da/noscrub/Michael.Lueken/svn1/src/enkf
         /scratch4/NCEPDEV/da/save/Michael.Lueken/svn1_old/build/bin
         /scratch4/NCEPDEV/da/save/Michael.Lueken/svn1/src/enkf
-   
+
     ${NO_DEFAULT_PATH})
 
 set( ENKFCONTROL ${ENKF_CONTROL_EXE} CACHE STRING "ENKF control executable for regression testing" FORCE )
-
