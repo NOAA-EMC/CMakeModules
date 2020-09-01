@@ -171,6 +171,18 @@ function(netcdf_config exec flag output_var)
   endif()
 endfunction()
 
+
+## Detect additional package properties
+netcdf_config(${NetCDF_C_CONFIG_EXECUTABLE} --has-parallel4 _val)
+if( NOT _val MATCHES "^(yes|no)$" )
+  netcdf_config(${NetCDF_C_CONFIG_EXECUTABLE} --has-parallel _val)
+endif()
+if( _val MATCHES "^(yes)$" )
+  set(NetCDF_PARALLEL TRUE CACHE STRING "NetCDF has parallel IO capability via pnetcdf or hdf5." FORCE)
+else()
+  set(NetCDF_PARALLEL FALSE CACHE STRING "NetCDF has no parallel IO capability." FORCE)
+endif()
+
 ## Find libraries for each component
 set( NetCDF_LIBRARIES )
 foreach( _comp IN LISTS _search_components )
@@ -231,6 +243,10 @@ foreach( _comp IN LISTS _search_components )
       if( NOT _comp MATCHES "^(C)$" )
         target_link_libraries(NetCDF::NetCDF_${_comp} INTERFACE NetCDF::NetCDF_C)
       endif()
+      if(NetCDF_PARALLEL)
+	find_package(MPI REQUIRED COMPONENTS ${_comp})
+	target_link_libraries(NetCDF::NetCDF_${_comp} PUBLIC MPI::MPI_${_comp})
+      endif()
     endif()
   endif()
 endforeach()
@@ -265,17 +281,6 @@ if (NetCDF_INCLUDE_DIRS)
     endforeach()
   endif()
 endif ()
-
-## Detect additional package properties
-netcdf_config(${NetCDF_C_CONFIG_EXECUTABLE} --has-parallel4 _val)
-if( NOT _val MATCHES "^(yes|no)$" )
-  netcdf_config(${NetCDF_C_CONFIG_EXECUTABLE} --has-parallel _val)
-endif()
-if( _val MATCHES "^(yes)$" )
-  set(NetCDF_PARALLEL TRUE CACHE STRING "NetCDF has parallel IO capability via pnetcdf or hdf5." FORCE)
-else()
-  set(NetCDF_PARALLEL FALSE CACHE STRING "NetCDF has no parallel IO capability." FORCE)
-endif()
 
 ## Finalize find_package
 include(FindPackageHandleStandardArgs)
