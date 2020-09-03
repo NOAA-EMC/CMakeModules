@@ -184,7 +184,8 @@ endif()
 
 
 if(NetCDF_PARALLEL)
-  find_package(MPI COMPONENTS ${${CMAKE_FIND_PACKAGE_NAME}_FIND_COMPONENTS})
+  # Searches for all enabled languages
+  find_package(MPI)
 endif()
 
 ## Find libraries for each component
