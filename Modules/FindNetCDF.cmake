@@ -184,25 +184,7 @@ endif()
 
 
 if(NetCDF_PARALLEL)
-  if(NetCDF_FIND_COMPONENTS STREQUAL "")
-    set(_MPI_components "C")
-  else()
-    set(_MPI_components ${NetCDF_FIND_COMPONENTS})
-  endif()
-
-  get_property(_enabled_langs GLOBAL PROPERTY ENABLED_LANGUAGES)
-  foreach(_mpi_comp ${_MPI_components})
-    if(NOT _mpi_comp IN_LIST _enabled_langs)
-      message(FATAL_ERROR "Language ${_mpi_comp} must be enabled to find MPI for NetCDF")
-    endif()    
-  endforeach()
-
-  message(STATUS
-    "Parallel NetCDF detected, attempting to search for MPI components: ${_MPI_components}")
-  find_package(MPI COMPONENTS ${_MPI_components})
-  if(NOT MPI_FOUND)
-    message(FATAL_ERROR "NetCDF has parallel enabled, but was unable to find MPI")
-  endif()
+  find_package(MPI REQUIRED)
 endif()
 
 ## Find libraries for each component
