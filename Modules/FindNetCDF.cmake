@@ -198,7 +198,7 @@ if(NetCDF_PARALLEL)
   endforeach()
 
   message(STATUS
-    "Paralle NetCDF detected, attempting to search for MPI components: ${_MPI_components}")
+    "Parallel NetCDF detected, attempting to search for MPI components: ${_MPI_components}")
   find_package(MPI COMPONENTS ${_MPI_components})
   if(NOT MPI_FOUND)
     message(FATAL_ERROR "NetCDF has parallel enabled, but was unable to find MPI")
