@@ -193,7 +193,7 @@ if(NetCDF_PARALLEL)
   get_property(_enabled_langs GLOBAL PROPERTY ENABLED_LANGUAGES)
   foreach(_mpi_comp ${_MPI_components})
     if(NOT _mpi_comp IN_LIST _enabled_langs)
-      message(FATAL_ERROR "Language ${_mpi_comp} must be enabled to find MPI for NetCD")
+      message(FATAL_ERROR "Language ${_mpi_comp} must be enabled to find MPI for NetCDF")
     endif()    
   endforeach()
 
