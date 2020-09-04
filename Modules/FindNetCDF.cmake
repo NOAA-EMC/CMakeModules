@@ -182,7 +182,6 @@ else()
   set(NetCDF_PARALLEL FALSE CACHE STRING "NetCDF has no parallel IO capability." FORCE)
 endif()
 
-
 if(NetCDF_PARALLEL)
   find_package(MPI REQUIRED)
 endif()
