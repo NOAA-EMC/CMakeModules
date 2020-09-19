@@ -23,7 +23,7 @@ else()
   set(ESMF_FOUND FALSE CACHE BOOL "ESMF mk file NOT found" FORCE)
   # Best to warn users that without the mk file there is no way to find ESMF
   if (NOT DEFINED ESMFMKFILE)
-    message(WARNING "ESMFMKFILE not defined. This is the path to esmf.mk file. \
+    message(FATAL_ERROR "ESMFMKFILE not defined. This is the path to esmf.mk file. \
 Without this filepath, ESMF_FOUND will always be FALSE.")
   endif ()
 endif()
@@ -86,14 +86,14 @@ if (ESMF_FOUND)
     message(STATUS "Static ESMF library not found, searching for dynamic library instead")
     find_library(esmf_lib NAMES esmf_fullylinked PATHS ${ESMF_LIBSDIR})
     if(esmf_lib MATCHES "esmf_lib-NOTFOUND")
-      message(WARNING "Neither the dynamic nor the static ESMF library was found")
+      message(FATAL_ERROR "Neither the dynamic nor the static ESMF library was found")
     else()
       message(STATUS "Found ESMF library: ${esmf_lib}")
     endif()
     set(ESMF_INTERFACE_LINK_LIBRARIES "")
   else()
     # When linking the static library, also need the ESMF linker flags; strip any leading/trailing whitespaces
-    string(STRIP "${ESMF_F90ESMFLINKRPATHS} ${ESMF_F90ESMFLINKPATHS} ${ESMF_F90LINKLIBS} ${ESMF_F90LINKOPTS}" ESMF_INTERFACE_LINK_LIBRARIES)
+    string(STRIP "${ESMF_F90ESMFLINKRPATHS} ${ESMF_F90ESMFLINKPATHS} ${ESMF_F90LINKPATHS} ${ESMF_F90LINKLIBS} ${ESMF_F90LINKOPTS}" ESMF_INTERFACE_LINK_LIBRARIES)
     message(STATUS "Found ESMF library: ${esmf_lib}")
   endif()
 
