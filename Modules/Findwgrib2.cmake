@@ -6,7 +6,7 @@ find_library(WGRIB2_LIBRARIES libwgrib2.a)
 
 find_program(WGRIB2_EXE wgrib2)
 execute_process(COMMAND ${WGRIB2_EXE} --version OUTPUT_VARIABLE version_str)
-string(SUBSTRING ${version_str} 3 5 version)
+string(SUBSTRING "${version_str}" 3 5 version)
 
 mark_as_advanced(WGRIB2_INCLUDES WGRIB2_LIBRARIES)
 
