@@ -27,7 +27,13 @@ set(WGRIB2_LIBRARIES "${first_lib}" "${second_lib}")
 
 find_program(WGRIB2_EXE wgrib2)
 execute_process(COMMAND ${WGRIB2_EXE} --version OUTPUT_VARIABLE version_str)
-string(SUBSTRING "${version_str}" 3 5 version)
+
+# Wgrib2 changed how it output --version from "v0.x.y.z" to "vx.y.z" starting in wgrib2 3.0
+if(version_str MATCHES "^v0.*")
+  string(SUBSTRING "${version_str}" 3 5 version)
+else()
+  string(SUBSTRING "${version_str}" 1 5 version)
+endif()
 
 find_package_handle_standard_args(wgrib2
   REQUIRED_VARS WGRIB2_LIBRARIES WGRIB2_INCLUDES WGRIB2_EXE
