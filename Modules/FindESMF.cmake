@@ -22,10 +22,8 @@ if (EXISTS ${ESMFMKFILE})
 else()
   set(ESMF_FOUND FALSE CACHE BOOL "ESMF mk file NOT found" FORCE)
   # Best to warn users that without the mk file there is no way to find ESMF
-  if (NOT DEFINED ESMFMKFILE)
     message(FATAL_ERROR "ESMFMKFILE not defined. This is the path to esmf.mk file. \
 Without this filepath, ESMF_FOUND will always be FALSE.")
-  endif ()
 endif()
 
 # Only parse the mk file if it is found
