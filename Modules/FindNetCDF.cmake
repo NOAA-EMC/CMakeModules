@@ -5,7 +5,7 @@
 # In applying this licence, ECMWF does not waive the privileges and immunities
 # granted to it by virtue of its status as an intergovernmental organisation nor
 # does it submit to any jurisdiction.
-
+#
 # Try to find NetCDF includes and library.
 # Supports static and shared libaries and allows each component to be found in sepearte prefixes.
 #
@@ -148,8 +148,8 @@ foreach( _comp IN LISTS _search_components )
   endif()
   find_program( NetCDF_${_comp}_CONFIG_EXECUTABLE
       NAMES n${_conf}-config
-    HINTS ${NetCDF_INCLUDE_DIRS} ${_include_search_hints} ${_search_hints}
-    PATH_SUFFIXES bin Bin ../bin ../../bin
+      HINTS ${NetCDF_INCLUDE_DIRS} ${_include_search_hints} ${_search_hints}
+      PATH_SUFFIXES bin Bin ../bin ../../bin
       DOC "NetCDF n${_conf}-config helper" )
     message(DEBUG "NetCDF_${_comp}_CONFIG_EXECUTABLE: ${NetCDF_${_comp}_CONFIG_EXECUTABLE}")
 endforeach()
@@ -194,7 +194,7 @@ else()
 endif()
 
 if(NetCDF_PARALLEL)
-  find_package(MPI)
+  find_package(MPI REQUIRED)
 endif()
 
 ## Find libraries for each component
