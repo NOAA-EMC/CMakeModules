@@ -76,6 +76,12 @@ if(PIO_INCLUDE_DIR)
             set(PIO_Fortran_SHARED_FOUND 1)
         endif()
     endif()
+
+    #Set version using installed .settings file
+    file(READ "${PIO_PREFIX}/lib/libpio.settings" ver)
+    string(REGEX MATCH "PIO Version:[ \t]*([0-9]*).([0-9]*).([0-9]*)" _ ${ver})
+    set(PIO_VERSION "${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3}")
+
     #Check for C components
     if(PIO_C_STATIC_LIB)
         set(PIO_C_STATIC_FOUND 1)
@@ -186,6 +192,7 @@ find_package_handle_standard_args(
   REQUIRED_VARS
     PIO_PREFIX
     PIO_INCLUDE_DIR
+  VERSION_VAR PIO_VERSION
   HANDLE_COMPONENTS
 )
 message(DEBUG "[FindPIO] PIO_FOUND: ${PIO_FOUND}")
@@ -194,6 +201,7 @@ message(DEBUG "[FindPIO] PIO_FOUND: ${PIO_FOUND}")
 if(${CMAKE_FIND_PACKAGE_NAME}_FOUND AND NOT ${CMAKE_FIND_PACKAGE_NAME}_FIND_QUIETLY AND _new_components)
     message( STATUS "Find${CMAKE_FIND_PACKAGE_NAME}:" )
     message( STATUS "  - ${CMAKE_FIND_PACKAGE_NAME}_PREFIX [${${CMAKE_FIND_PACKAGE_NAME}_PREFIX}]")
+    message( STATUS "  - ${CMAKE_FIND_PACKAGE_NAME}_VERSION: [${${CMAKE_FIND_PACKAGE_NAME}_VERSION}]")
     set(_found_comps)
     foreach( _comp ${_search_components} )
         if( ${CMAKE_FIND_PACKAGE_NAME}_${_comp}_FOUND )
