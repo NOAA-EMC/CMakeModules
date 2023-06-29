@@ -200,7 +200,7 @@ if(NetCDF_PARALLEL)
 endif()
 
 ## Find libraries for each component
-set( NetCDF_LIBRARIES )
+set( NetCDF_LIBRARIES "" )
 foreach( _comp IN LISTS _search_components )
   string( TOUPPER "${_comp}" _COMP )
 
